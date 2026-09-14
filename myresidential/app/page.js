@@ -31,15 +31,31 @@ export default function Home() {
             tomar mejores decisiones.
           </p>
 
-          <div className="heroButtons">
-            <a className="primaryButton" href="#administrador">
-              Ver panel administrador
-            </a>
+          <div className="heroAccess">
+          <a
+            href="/administrador"
+            className="heroAccessCard heroAccessAdmin"
+          >
+            <span className="heroAccessLabel">GESTIÓN PROFESIONAL</span>
+            <strong>Soy Administrador</strong>
+            <p>
+              Gestiona comunidades, analiza gastos y detecta desviaciones.
+            </p>
+            <span className="heroAccessArrow">Acceder →</span>
+          </a>
 
-            <a className="secondaryButton" href="#funcionalidades">
-              Conocer la plataforma
-            </a>
-          </div>
+          <a
+            href="/vecino"
+            className="heroAccessCard heroAccessNeighbor"
+          >
+            <span className="heroAccessLabel">MI COMUNIDAD</span>
+            <strong>Soy Vecino</strong>
+            <p>
+              Consulta gastos, incidencias, contratos y reservas.
+            </p>
+            <span className="heroAccessArrow">Acceder →</span>
+          </a>
+        </div>
 
           <div className="heroStats">
             <div>
