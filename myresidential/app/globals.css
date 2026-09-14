@@ -2278,3 +2278,91 @@ a {
     130px
     90px;
 }
+.communityOperationsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.communityMiniTable {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.communityMiniHeader,
+.communityMiniRow {
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  min-width: 850px;
+}
+
+.communityMiniHeader {
+  padding: 10px 12px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.communityMiniRow {
+  padding: 15px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+  color: #475569;
+}
+
+.communityMiniRow:last-child {
+  border-bottom: none;
+}
+
+.communityMiniRow strong {
+  color: #0f172a;
+}
+
+.communityMiniRow > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.communityMiniRow small {
+  color: #94a3b8;
+}
+
+.expensesCommunityColumns {
+  grid-template-columns:
+    100px
+    160px
+    minmax(150px, 1fr)
+    minmax(200px, 1.5fr)
+    110px;
+}
+
+.incidentsCommunityColumns {
+  grid-template-columns:
+    minmax(220px, 1.5fr)
+    minmax(150px, 1fr)
+    90px
+    100px
+    105px
+    100px;
+}
+
+.contractsCommunityColumns {
+  grid-template-columns:
+    150px
+    minmax(170px, 1fr)
+    105px
+    105px
+    125px
+    90px;
+}
+
+.communityEmptyState {
+  padding: 24px 0;
+  color: #94a3b8;
+  font-size: 14px;
+}

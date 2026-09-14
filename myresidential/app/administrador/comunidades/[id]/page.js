@@ -88,7 +88,98 @@ export default async function ComunidadDetalle({ params }) {
     `);
 
   const categoriasBenchmark = categoriasBenchmarkResult.recordset;
+      // ================================
+      // ÚLTIMOS GASTOS
+      // ================================
 
+      const gastosDetalleResult = await pool
+        .request()
+        .input("id", id)
+        .query(`
+          SELECT TOP 8
+            g.gasto_id,
+            g.fecha,
+            g.categoria,
+            g.concepto,
+            g.importe,
+            p.nombre AS proveedor
+          FROM gastos g
+          LEFT JOIN proveedores p
+            ON g.proveedor_id = p.proveedor_id
+          WHERE g.comunidad_id = @id
+          ORDER BY g.fecha DESC
+        `);
+
+      const gastosDetalle = gastosDetalleResult.recordset;
+
+
+      // ================================
+      // INCIDENCIAS
+      // ================================
+
+      const incidenciasResult = await pool
+        .request()
+        .input("id", id)
+        .query(`
+          SELECT TOP 8
+            i.incidencia_id,
+            i.tipo,
+            i.descripcion,
+            i.fecha_apertura,
+            i.fecha_cierre,
+            i.estado,
+            i.prioridad,
+            i.coste,
+            p.nombre AS proveedor
+          FROM incidencias i
+          LEFT JOIN proveedores p
+            ON i.proveedor_id = p.proveedor_id
+          WHERE i.comunidad_id = @id
+          ORDER BY
+            CASE
+              WHEN i.estado = 'Abierta' THEN 0
+              ELSE 1
+            END,
+            CASE
+              WHEN i.prioridad = 'Alta' THEN 1
+              WHEN i.prioridad = 'Media' THEN 2
+              ELSE 3
+            END,
+            i.fecha_apertura DESC
+        `);
+
+      const incidencias = incidenciasResult.recordset;
+
+
+      // ================================
+      // CONTRATOS
+      // ================================
+
+      const contratosResult = await pool
+        .request()
+        .input("id", id)
+        .query(`
+          SELECT TOP 8
+            ct.contrato_id,
+            ct.servicio,
+            ct.fecha_inicio,
+            ct.fecha_fin,
+            ct.importe_anual,
+            ct.estado,
+            p.nombre AS proveedor
+          FROM contratos ct
+          INNER JOIN proveedores p
+            ON ct.proveedor_id = p.proveedor_id
+          WHERE ct.comunidad_id = @id
+          ORDER BY
+            CASE
+              WHEN ct.fecha_fin IS NULL THEN 1
+              ELSE 0
+            END,
+            ct.fecha_fin ASC
+        `);
+
+      const contratos = contratosResult.recordset;
   // ================================
   // INTERFAZ
   // ================================
@@ -476,12 +567,215 @@ export default async function ComunidadDetalle({ params }) {
                 </div>
               );
             })}
-
+            
           </div>
         </article>
+          <section className="communityOperationsSection">
 
+            {/* ÚLTIMOS GASTOS */}
+
+            <article className="communityPanel">
+              <div className="communityPanelHeader">
+                <h2>Últimos gastos</h2>
+                <p>
+                  Movimientos económicos recientes de esta comunidad.
+                </p>
+              </div>
+
+              <div className="communityMiniTable">
+
+                <div className="communityMiniHeader expensesCommunityColumns">
+                  <span>Fecha</span>
+                  <span>Categoría</span>
+                  <span>Proveedor</span>
+                  <span>Concepto</span>
+                  <span>Importe</span>
+                </div>
+
+                {gastosDetalle.map((gasto) => (
+                  <div
+                    className="communityMiniRow expensesCommunityColumns"
+                    key={gasto.gasto_id}
+                  >
+                    <span>
+                      {new Date(gasto.fecha).toLocaleDateString("es-ES")}
+                    </span>
+
+                    <strong>{gasto.categoria}</strong>
+
+                    <span>{gasto.proveedor || "—"}</span>
+
+                    <span>{gasto.concepto || "—"}</span>
+
+                    <strong>
+                      {Number(gasto.importe).toLocaleString("es-ES", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })} €
+                    </strong>
+                  </div>
+                ))}
+
+              </div>
+            </article>
+
+
+            {/* INCIDENCIAS */}
+
+            <article className="communityPanel">
+              <div className="communityPanelHeader">
+                <h2>Incidencias</h2>
+                <p>
+                  Estado de las incidencias asociadas a esta comunidad.
+                </p>
+              </div>
+
+              {incidencias.length === 0 ? (
+                <p className="communityEmptyState">
+                  No hay incidencias registradas.
+                </p>
+              ) : (
+                <div className="communityMiniTable">
+
+                  <div className="communityMiniHeader incidentsCommunityColumns">
+                    <span>Incidencia</span>
+                    <span>Proveedor</span>
+                    <span>Prioridad</span>
+                    <span>Estado</span>
+                    <span>Apertura</span>
+                    <span>Coste</span>
+                  </div>
+
+                  {incidencias.map((incidencia) => (
+                    <div
+                      className="communityMiniRow incidentsCommunityColumns"
+                      key={incidencia.incidencia_id}
+                    >
+                      <div>
+                        <strong>{incidencia.tipo}</strong>
+                        <small>{incidencia.descripcion}</small>
+                      </div>
+
+                      <span>{incidencia.proveedor || "—"}</span>
+
+                      <span
+                        className={`priorityBadge priority${incidencia.prioridad}`}
+                      >
+                        {incidencia.prioridad}
+                      </span>
+
+                      <span
+                        className={
+                          incidencia.estado === "Abierta"
+                            ? "statusWarning"
+                            : "statusOk"
+                        }
+                      >
+                        {incidencia.estado}
+                      </span>
+
+                      <span>
+                        {new Date(
+                          incidencia.fecha_apertura
+                        ).toLocaleDateString("es-ES")}
+                      </span>
+
+                      <strong>
+                        {incidencia.coste != null
+                          ? `${Number(incidencia.coste).toLocaleString(
+                              "es-ES",
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )} €`
+                          : "—"}
+                      </strong>
+                    </div>
+                  ))}
+
+                </div>
+              )}
+            </article>
+
+
+            {/* CONTRATOS */}
+
+            <article className="communityPanel">
+              <div className="communityPanelHeader">
+                <h2>Contratos</h2>
+                <p>
+                  Servicios y contratos asociados a esta comunidad.
+                </p>
+              </div>
+
+              {contratos.length === 0 ? (
+                <p className="communityEmptyState">
+                  No hay contratos registrados.
+                </p>
+              ) : (
+                <div className="communityMiniTable">
+
+                  <div className="communityMiniHeader contractsCommunityColumns">
+                    <span>Servicio</span>
+                    <span>Proveedor</span>
+                    <span>Inicio</span>
+                    <span>Fin</span>
+                    <span>Importe anual</span>
+                    <span>Estado</span>
+                  </div>
+
+                  {contratos.map((contrato) => (
+                    <div
+                      className="communityMiniRow contractsCommunityColumns"
+                      key={contrato.contrato_id}
+                    >
+                      <strong>{contrato.servicio}</strong>
+
+                      <span>{contrato.proveedor}</span>
+
+                      <span>
+                        {new Date(
+                          contrato.fecha_inicio
+                        ).toLocaleDateString("es-ES")}
+                      </span>
+
+                      <span>
+                        {contrato.fecha_fin
+                          ? new Date(
+                              contrato.fecha_fin
+                            ).toLocaleDateString("es-ES")
+                          : "Sin fecha"}
+                      </span>
+
+                      <strong>
+                        {Number(
+                          contrato.importe_anual
+                        ).toLocaleString("es-ES", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })} €
+                      </strong>
+
+                      <span
+                        className={
+                          contrato.estado === "Activo"
+                            ? "statusOk"
+                            : "statusWarning"
+                        }
+                      >
+                        {contrato.estado}
+                      </span>
+                    </div>
+                  ))}
+
+                </div>
+              )}
+            </article>
+
+          </section>
       </section>
-
+            
     </main>
   );
 }
