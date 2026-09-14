@@ -1,242 +1,334 @@
 import Link from "next/link";
+import { getConnection } from "../../lib/db";
 
-export default function Administrador() {
+export default async function AdministradorPage() {
+  const pool = await getConnection();
+
+  const resumenResult = await pool.request().query(`
+    SELECT
+      (SELECT COUNT(*) FROM comunidades) AS total_comunidades,
+
+      (
+        SELECT COUNT(*)
+        FROM benchmark_comunidades
+        WHERE alerta_gasto = 1
+      ) AS comunidades_alerta,
+
+      (
+        SELECT COUNT(*)
+        FROM incidencias
+        WHERE estado = 'Abierta'
+      ) AS incidencias_abiertas,
+
+      (
+        SELECT COUNT(*)
+        FROM contratos
+        WHERE fecha_fin IS NOT NULL
+          AND fecha_fin >= CAST(GETDATE() AS DATE)
+          AND fecha_fin <= DATEADD(DAY, 60, CAST(GETDATE() AS DATE))
+      ) AS contratos_proximos
+  `);
+
+  const resumen = resumenResult.recordset[0];
+
+  const topComunidadesResult = await pool.request().query(`
+    SELECT TOP 5
+      c.comunidad_id,
+      c.nombre,
+      c.numero_viviendas,
+      b.gasto_por_vivienda,
+      b.mediana_grupo,
+      b.desviacion_pct,
+      b.comunidades_comparables
+    FROM comunidades c
+    INNER JOIN benchmark_comunidades b
+      ON c.comunidad_id = b.comunidad_id
+    WHERE b.alerta_gasto = 1
+    ORDER BY b.desviacion_pct DESC
+  `);
+
+  const topComunidades = topComunidadesResult.recordset;
+
+  const incidenciasResult = await pool.request().query(`
+    SELECT TOP 5
+      i.incidencia_id,
+      c.nombre AS comunidad,
+      i.tipo,
+      i.prioridad,
+      i.fecha_apertura
+    FROM incidencias i
+    INNER JOIN comunidades c
+      ON i.comunidad_id = c.comunidad_id
+    WHERE i.estado = 'Abierta'
+    ORDER BY
+      CASE
+        WHEN i.prioridad = 'Alta' THEN 1
+        WHEN i.prioridad = 'Media' THEN 2
+        ELSE 3
+      END,
+      i.fecha_apertura DESC
+  `);
+
+  const incidencias = incidenciasResult.recordset;
+
   return (
-    <div className="adminLayout">
+    <main className="adminMain">
 
-      <aside className="sidebar">
-        <Link href="/" className="sidebarLogo">
-          MyResidential
-        </Link>
+      {/* CABECERA */}
 
-        <div className="sidebarClient">
-          <span>Administrador</span>
-          <strong>Urbalia Gestión</strong>
+      <div className="adminDashboardHeader">
+        <div>
+          <p className="adminEyebrow">Panel de administración</p>
+          <h1>Buenos días, Urbalia</h1>
+          <p>
+            Resumen de las comunidades gestionadas y principales
+            desviaciones detectadas.
+          </p>
         </div>
 
-        <nav className="sidebarNav">
-        <Link className="active" href="/administrador">
-            Inicio
+        <Link
+          href="/administrador/comunidades"
+          className="dashboardPrimaryButton"
+        >
+          Ver comunidades
         </Link>
+      </div>
 
-        <Link href="/administrador/comunidades">
-            Comunidades
-        </Link>
+      {/* KPIs */}
 
-        <Link href="/administrador/gastos">
-            Gastos
-        </Link>
+      <section className="dashboardKpis">
 
-        <Link href="/administrador/proveedores">
-            Proveedores
-        </Link>
-
-        <Link href="/administrador/incidencias">
-            Incidencias
-        </Link>
-
-        <Link href="/administrador/contratos">
-            Contratos
-        </Link>
-        </nav>
-
-        <div className="sidebarBottom">
-          <Link href="/">← Volver a MyResidential</Link>
-        </div>
-      </aside>
-
-      <main className="adminMain">
-
-        <header className="adminHeader">
+        <article className="dashboardKpiCard">
           <div>
-            <p className="adminEyebrow">Panel de administración</p>
-            <h1>Buenos días, Urbalia.</h1>
-            <p>
-              Este es el estado general de las comunidades que gestionas.
-            </p>
-          </div>
-
-          <div className="adminProfile">
-            <div className="profileAvatar">UG</div>
-            <div>
-              <strong>Urbalia Gestión</strong>
-              <span>Administrador</span>
-            </div>
-          </div>
-        </header>
-
-        <section className="adminKpis">
-          <article className="adminKpi">
             <span>Comunidades</span>
-            <strong>120</strong>
-            <small>Cartera gestionada</small>
-          </article>
+            <strong>{resumen.total_comunidades}</strong>
+          </div>
 
-          <article className="adminKpi">
-            <span>Alertas detectadas</span>
-            <strong>14</strong>
-            <small>Requieren revisión</small>
-          </article>
+          <small>Cartera gestionada</small>
+        </article>
 
-          <article className="adminKpi">
+        <article className="dashboardKpiCard dashboardKpiWarning">
+          <div>
+            <span>Alertas de gasto</span>
+            <strong>{resumen.comunidades_alerta}</strong>
+          </div>
+
+          <small>Comunidades para revisar</small>
+        </article>
+
+        <article className="dashboardKpiCard">
+          <div>
             <span>Incidencias abiertas</span>
-            <strong>23</strong>
-            <small>5 de prioridad alta</small>
-          </article>
-
-          <article className="adminKpi">
-            <span>Contratos próximos a vencer</span>
-            <strong>8</strong>
-            <small>Próximos 60 días</small>
-          </article>
-        </section>
-
-        <section className="adminDashboardGrid">
-
-          <div className="adminPanel alertsPanel">
-            <div className="panelTitle">
-              <div>
-                <h2>Comunidades que requieren atención</h2>
-                <p>Desviaciones detectadas frente a comunidades similares.</p>
-              </div>
-
-              <button>Ver todas</button>
-            </div>
-
-            <div className="dashboardAlert">
-              <div className="dashboardAlertIcon">!</div>
-
-              <div className="dashboardAlertContent">
-                <strong>Jardines del Norte</strong>
-                <span>
-                  Gasto por vivienda superior al grupo comparable.
-                </span>
-              </div>
-
-              <div className="dashboardAlertValue">
-                +18,4%
-              </div>
-            </div>
-
-            <div className="dashboardAlert">
-              <div className="dashboardAlertIcon">!</div>
-
-              <div className="dashboardAlertContent">
-                <strong>Residencial Castellana</strong>
-                <span>
-                  Coste de ascensores superior a comunidades similares.
-                </span>
-              </div>
-
-              <div className="dashboardAlertValue">
-                +23,1%
-              </div>
-            </div>
-
-            <div className="dashboardAlert">
-              <div className="dashboardAlertIcon">!</div>
-
-              <div className="dashboardAlertContent">
-                <strong>Parque del Retiro</strong>
-                <span>
-                  Mayor número de incidencias por vivienda.
-                </span>
-              </div>
-
-              <div className="dashboardAlertValue">
-                +16,8%
-              </div>
-            </div>
+            <strong>{resumen.incidencias_abiertas}</strong>
           </div>
 
-          <div className="adminPanel portfolioPanel">
-            <div className="panelTitle">
-              <div>
-                <h2>Estado de la cartera</h2>
-                <p>Distribución de comunidades.</p>
-              </div>
-            </div>
+          <small>Pendientes de resolución</small>
+        </article>
 
-            <div className="portfolioChart">
-              <div className="donutChart">
-                <div className="donutCenter">
-                  <strong>120</strong>
-                  <span>comunidades</span>
-                </div>
-              </div>
-
-              <div className="portfolioLegend">
-                <div>
-                  <span className="legendDot stable"></span>
-                  <p>Sin alertas</p>
-                  <strong>106</strong>
-                </div>
-
-                <div>
-                  <span className="legendDot warning"></span>
-                  <p>Con alertas</p>
-                  <strong>14</strong>
-                </div>
-              </div>
-            </div>
+        <article className="dashboardKpiCard">
+          <div>
+            <span>Contratos próximos</span>
+            <strong>{resumen.contratos_proximos}</strong>
           </div>
 
-        </section>
+          <small>Vencen en los próximos 60 días</small>
+        </article>
 
-        <section className="adminPanel communitiesPanel">
-          <div className="panelTitle">
+      </section>
+
+      {/* CONTENIDO PRINCIPAL */}
+
+      <section className="dashboardMainGrid">
+
+        {/* COMUNIDADES CON MAYOR DESVIACIÓN */}
+
+        <article className="dashboardPanel">
+
+          <div className="dashboardPanelHeader">
             <div>
-              <h2>Resumen de comunidades</h2>
-              <p>Principales indicadores de la cartera.</p>
+              <h2>Comunidades a revisar</h2>
+              <p>
+                Mayores desviaciones de gasto frente a su grupo comparable.
+              </p>
             </div>
 
-            <button>Ver comunidades</button>
+            <Link href="/administrador/comunidades">
+              Ver todas →
+            </Link>
           </div>
 
-          <div className="communityTable">
-            <div className="communityTableHeader">
-              <span>Comunidad</span>
-              <span>Viviendas</span>
-              <span>Gasto / vivienda</span>
-              <span>Comparativa</span>
-              <span>Estado</span>
-            </div>
+          <div className="dashboardCommunitiesList">
 
-            <div className="communityTableRow">
-              <strong>Jardines del Norte</strong>
-              <span>124</span>
-              <span>471 €</span>
-              <span className="negativeMetric">+18,4%</span>
-              <span className="statusWarning">Revisar</span>
-            </div>
+            {topComunidades.map((comunidad) => (
+              <div
+                className="dashboardCommunityRow"
+                key={comunidad.comunidad_id}
+              >
+                <div className="dashboardCommunityInfo">
+                  <strong>{comunidad.nombre}</strong>
 
-            <div className="communityTableRow">
-              <strong>Residencial Castellana</strong>
-              <span>86</span>
-              <span>438 €</span>
-              <span className="negativeMetric">+12,7%</span>
-              <span className="statusWarning">Revisar</span>
-            </div>
+                  <span>
+                    {comunidad.numero_viviendas} viviendas ·{" "}
+                    {comunidad.comunidades_comparables} comparables
+                  </span>
+                </div>
 
-            <div className="communityTableRow">
-              <strong>Torres de Chamartín</strong>
-              <span>102</span>
-              <span>396 €</span>
-              <span className="positiveMetric">-2,3%</span>
-              <span className="statusOk">Normal</span>
-            </div>
+                <div className="dashboardCommunityMetrics">
 
-            <div className="communityTableRow">
-              <strong>Residencial Velázquez</strong>
-              <span>64</span>
-              <span>401 €</span>
-              <span>+1,1%</span>
-              <span className="statusOk">Normal</span>
-            </div>
+                  <div>
+                    <span>€/ vivienda</span>
+                    <strong>
+                      {Number(
+                        comunidad.gasto_por_vivienda
+                      ).toFixed(2)} €
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>Desviación</span>
+                    <strong className="dashboardDeviation">
+                      +
+                      {Number(
+                        comunidad.desviacion_pct
+                      ).toFixed(1)}
+                      %
+                    </strong>
+                  </div>
+
+                  <Link
+                    href={`/administrador/comunidades/${comunidad.comunidad_id}`}
+                    className="dashboardAnalyzeButton"
+                  >
+                    Analizar
+                  </Link>
+
+                </div>
+              </div>
+            ))}
+
           </div>
-        </section>
+        </article>
 
-      </main>
-    </div>
+        {/* INCIDENCIAS */}
+
+        <article className="dashboardPanel">
+
+          <div className="dashboardPanelHeader">
+            <div>
+              <h2>Incidencias abiertas</h2>
+              <p>
+                Incidencias que requieren seguimiento.
+              </p>
+            </div>
+
+            <Link href="/administrador/incidencias">
+              Ver todas →
+            </Link>
+          </div>
+
+          <div className="dashboardIncidentList">
+
+            {incidencias.length === 0 ? (
+              <p className="dashboardEmpty">
+                No hay incidencias abiertas.
+              </p>
+            ) : (
+              incidencias.map((incidencia) => (
+                <div
+                  className="dashboardIncident"
+                  key={incidencia.incidencia_id}
+                >
+                  <div>
+                    <strong>{incidencia.tipo}</strong>
+                    <span>{incidencia.comunidad}</span>
+                  </div>
+
+                  <span
+                    className={`priorityBadge priority${incidencia.prioridad}`}
+                  >
+                    {incidencia.prioridad}
+                  </span>
+                </div>
+              ))
+            )}
+
+          </div>
+        </article>
+
+      </section>
+
+      {/* ACCESOS RÁPIDOS */}
+
+      <section className="dashboardQuickSection">
+
+        <div className="dashboardSectionTitle">
+          <h2>Gestión</h2>
+          <p>
+            Accede a las principales áreas de MyResidential.
+          </p>
+        </div>
+
+        <div className="dashboardQuickGrid">
+
+          <Link
+            href="/administrador/comunidades"
+            className="dashboardQuickCard"
+          >
+            <span>01</span>
+            <strong>Comunidades</strong>
+            <p>
+              Consulta la cartera, benchmarks y alertas.
+            </p>
+          </Link>
+
+          <Link
+            href="/administrador/gastos"
+            className="dashboardQuickCard"
+          >
+            <span>02</span>
+            <strong>Gastos</strong>
+            <p>
+              Analiza gastos por comunidad y categoría.
+            </p>
+          </Link>
+
+          <Link
+            href="/administrador/proveedores"
+            className="dashboardQuickCard"
+          >
+            <span>03</span>
+            <strong>Proveedores</strong>
+            <p>
+              Consulta proveedores y servicios contratados.
+            </p>
+          </Link>
+
+          <Link
+            href="/administrador/incidencias"
+            className="dashboardQuickCard"
+          >
+            <span>04</span>
+            <strong>Incidencias</strong>
+            <p>
+              Supervisa incidencias y prioridades.
+            </p>
+          </Link>
+
+          <Link
+            href="/administrador/contratos"
+            className="dashboardQuickCard"
+          >
+            <span>05</span>
+            <strong>Contratos</strong>
+            <p>
+              Controla importes y próximos vencimientos.
+            </p>
+          </Link>
+
+        </div>
+
+      </section>
+
+    </main>
   );
 }

@@ -1774,3 +1774,507 @@ a {
     grid-template-columns: 1fr;
   }
 }
+.categoryBenchmarkSection {
+  margin-top: 22px;
+}
+
+.categoryBenchmarkList {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryBenchmarkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px 4px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.categoryBenchmarkRow:last-child {
+  border-bottom: none;
+}
+
+.categoryBenchmarkName {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.categoryBenchmarkName strong {
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.categoryBenchmarkName > span {
+  color: #475569;
+  font-size: 13px;
+}
+
+.categoryBenchmarkName small {
+  margin-left: 12px;
+  color: #94a3b8;
+}
+
+.categoryDeviation {
+  min-width: 85px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.categoryDeviationHigh {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.categoryDeviationMedium {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.categoryDeviationGood {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+@media (max-width: 650px) {
+  .categoryBenchmarkRow {
+    align-items: flex-start;
+  }
+
+  .categoryBenchmarkName small {
+    display: block;
+    margin: 4px 0 0;
+  }
+}
+.adminDashboardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.adminDashboardHeader h1 {
+  margin: 5px 0 7px;
+  font-size: 36px;
+  color: #0f172a;
+}
+
+.adminDashboardHeader p {
+  color: #64748b;
+  max-width: 650px;
+}
+
+.dashboardPrimaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.dashboardPrimaryButton:hover {
+  background: #1d4ed8;
+}
+
+.dashboardKpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.dashboardKpiCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.dashboardKpiCard span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.dashboardKpiCard strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 31px;
+  color: #0f172a;
+}
+
+.dashboardKpiCard small {
+  display: block;
+  margin-top: 8px;
+  color: #94a3b8;
+}
+
+.dashboardKpiWarning strong {
+  color: #dc2626;
+}
+
+.dashboardMainGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.dashboardPanel {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.dashboardPanelHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dashboardPanelHeader h2 {
+  margin: 0 0 4px;
+  color: #0f172a;
+}
+
+.dashboardPanelHeader p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.dashboardPanelHeader a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dashboardCommunitiesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardCommunityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dashboardCommunityRow:last-child {
+  border-bottom: none;
+}
+
+.dashboardCommunityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dashboardCommunityInfo strong {
+  color: #0f172a;
+}
+
+.dashboardCommunityInfo span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.dashboardCommunityMetrics {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dashboardCommunityMetrics div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dashboardCommunityMetrics span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.dashboardCommunityMetrics strong {
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.dashboardDeviation {
+  color: #dc2626 !important;
+}
+
+.dashboardAnalyzeButton {
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dashboardIncidentList {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardIncident {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dashboardIncident:last-child {
+  border-bottom: none;
+}
+
+.dashboardIncident div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboardIncident strong {
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.dashboardIncident div span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.priorityBadge {
+  padding: 6px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.priorityAlta {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.priorityMedia {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.priorityBaja {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.dashboardEmpty {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.dashboardQuickSection {
+  margin-top: 10px;
+}
+
+.dashboardSectionTitle {
+  margin-bottom: 16px;
+}
+
+.dashboardSectionTitle h2 {
+  margin: 0 0 5px;
+  color: #0f172a;
+}
+
+.dashboardSectionTitle p {
+  margin: 0;
+  color: #64748b;
+}
+
+.dashboardQuickGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.dashboardQuickCard {
+  padding: 20px;
+  border-radius: 15px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.dashboardQuickCard:hover {
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.dashboardQuickCard > span {
+  font-size: 12px;
+  color: #2563eb;
+  font-weight: 800;
+}
+
+.dashboardQuickCard strong {
+  display: block;
+  margin: 12px 0 6px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.dashboardQuickCard p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.45;
+  font-size: 13px;
+}
+
+@media (max-width: 1100px) {
+  .dashboardKpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboardMainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardQuickGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .adminDashboardHeader {
+    flex-direction: column;
+  }
+
+  .dashboardKpis {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardQuickGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardCommunityRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboardCommunityMetrics {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+.managementTable {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.managementTableHeader,
+.managementTableRow {
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  min-width: 900px;
+}
+
+.managementTableHeader {
+  padding: 12px 14px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.managementTableRow {
+  padding: 16px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.managementTableRow:last-child {
+  border-bottom: none;
+}
+
+.managementTableRow strong {
+  color: #0f172a;
+}
+
+.managementTableRow > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.managementTableRow small {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.expensesColumns {
+  grid-template-columns:
+    100px
+    minmax(180px, 1.4fr)
+    150px
+    minmax(150px, 1fr)
+    minmax(190px, 1.4fr)
+    110px;
+}
+
+.providersColumns {
+  grid-template-columns:
+    minmax(200px, 1.5fr)
+    150px
+    90px
+    100px
+    130px
+    100px;
+}
+
+.incidentsColumns {
+  grid-template-columns:
+    minmax(220px, 1.5fr)
+    minmax(180px, 1fr)
+    100px
+    100px
+    110px
+    100px;
+}
+
+.contractsColumns {
+  grid-template-columns:
+    150px
+    minmax(180px, 1.3fr)
+    minmax(160px, 1fr)
+    105px
+    105px
+    130px
+    90px;
+}
