@@ -1,8 +1,18 @@
+import Image from "next/image";
 export default function Home() {
   return (
     <main>
       <header className="navbar">
-        <div className="logo">MyResidential</div>
+        <a href="/" className="brandLogo">
+        <Image
+          src="/logo-myresidential.png"
+          alt="MyResidential"
+          width={42}
+          height={42}
+          className="brandLogoImage"
+        />
+        <span>MyResidential</span>
+      </a>
 
         <nav className="navLinks">
           <a href="#problema">Problema</a>
@@ -33,7 +43,7 @@ export default function Home() {
 
           <div className="heroAccess">
           <a
-            href="/administrador"
+            href="/administrador/login"
             className="heroAccessCard heroAccessAdmin"
           >
             <span className="heroAccessLabel">GESTIÓN PROFESIONAL</span>

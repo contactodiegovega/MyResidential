@@ -1,10 +1,35 @@
 import Link from "next/link";
 import { getConnection } from "../../lib/db";
+import FormularioAnuncio from "./FormularioAnuncio";
 
 export default async function VecinoPage() {
   const comunidadId = 107;
+  const viviendaId = 12922;
 
   const pool = await getConnection();
+
+  // 👇 AÑÁDELO AQUÍ
+  const anunciosResult = await pool
+    .request()
+    .input("id", comunidadId)
+    .query(`
+      SELECT TOP 10
+        a.anuncio_id,
+        a.titular,
+        a.texto,
+        a.fecha_publicacion,
+        v.portal,
+        v.planta,
+        v.puerta
+      FROM anuncios a
+      INNER JOIN viviendas v
+        ON a.vivienda_id = v.vivienda_id
+      WHERE a.comunidad_id = @id
+        AND a.activo = 1
+      ORDER BY a.fecha_publicacion DESC
+    `);
+
+  const anuncios = anunciosResult.recordset;
 
   // COMUNIDAD
   const comunidadResult = await pool
@@ -189,7 +214,68 @@ export default async function VecinoPage() {
         <section className="socialContentGrid">
 
           <div className="socialFeed">
+        {/* TABLÓN DE ANUNCIOS */}
 
+<section className="communityBoard">
+
+  <div className="communityBoardHeader">
+    <div>
+      <p className="socialEyebrow">Entre vecinos</p>
+      <h2>Tablón de la comunidad</h2>
+      <p>Comparte anuncios e información con tus vecinos.</p>
+    </div>
+
+    <FormularioAnuncio
+      comunidadId={comunidadId}
+      viviendaId={viviendaId}
+    />
+  </div>
+
+  {anuncios.length === 0 ? (
+    <div className="communityBoardEmpty">
+      <strong>El tablón está vacío</strong>
+      <p>Sé el primero en publicar un anuncio.</p>
+    </div>
+  ) : (
+    <div className="communityBoardGrid">
+      {anuncios.map((anuncio) => (
+        <article
+          className="communityBoardCard"
+          key={anuncio.anuncio_id}
+        >
+          <div className="communityBoardAvatar">
+            V
+          </div>
+
+          <div className="communityBoardContent">
+
+            <div className="communityBoardMeta">
+              <strong>
+                Portal {anuncio.portal} · {anuncio.planta}º
+                {anuncio.puerta}
+              </strong>
+
+              <span>
+                {new Date(
+                  anuncio.fecha_publicacion
+                ).toLocaleDateString("es-ES", {
+                  day: "2-digit",
+                  month: "short",
+                })}
+              </span>
+            </div>
+
+            <h3>{anuncio.titular}</h3>
+
+            <p>{anuncio.texto}</p>
+
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+
+    </section>
             {/* AVISO DEMO */}
 
             <article className="feedCard feedAnnouncement">

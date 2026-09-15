@@ -2745,3 +2745,1411 @@ a {
     display: none;
   }
 }
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f172a;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.brandLogoImage {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+/* =========================================
+   CTA ACCESO ADMINISTRADOR / VECINO
+========================================= */
+
+.heroAccess {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  margin-bottom: 30px;
+}
+
+.heroAccessCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.heroAccessCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+}
+
+.heroAccessAdmin {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.heroAccessNeighbor {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.heroAccessLabel {
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.heroAccessCard strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.heroAccessCard p {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.heroAccessArrow {
+  margin-top: auto;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.heroAccessNeighbor p,
+.heroAccessNeighbor .heroAccessArrow {
+  color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  .heroAccess {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   VECINO - INCIDENCIAS
+========================================= */
+
+.residentPageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.residentPageHeader h1 {
+  margin: 0 0 7px;
+  color: #0f172a;
+  font-size: 32px;
+}
+
+.residentPageHeader > div > p:last-child {
+  margin: 0;
+  color: #64748b;
+}
+
+.residentPrimaryButton {
+  padding: 13px 18px;
+  border: none;
+  border-radius: 11px;
+  background: #0f766e;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.residentPrimaryButton:hover {
+  background: #115e59;
+}
+
+.residentSummary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.residentSummary > div {
+  min-width: 135px;
+  padding: 15px 18px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.residentSummary strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.residentSummary span {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.residentSection {
+  margin-bottom: 34px;
+}
+
+.residentSectionHeader {
+  margin-bottom: 14px;
+}
+
+.residentSectionHeader h2 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 20px;
+}
+
+.residentSectionHeader p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.residentIncidentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.residentIncidentCard {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentIncidentTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.residentIncidentIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0fdfa;
+}
+
+.residentIncidentStatus {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.residentIncidentCard h3 {
+  margin: 0 0 7px;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.residentIncidentCard > p {
+  min-height: 40px;
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.residentIncidentMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid #f1f5f9;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.residentHistory {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentHistoryRow {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.residentHistoryRow:last-child {
+  border-bottom: none;
+}
+
+.residentHistoryIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.residentHistoryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.residentHistoryContent strong {
+  color: #0f172a;
+  font-size: 13px;
+}
+
+.residentHistoryContent span {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.residentHistoryDate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.residentHistoryDate span {
+  color: #047857;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.residentHistoryDate small {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.residentEmptyState {
+  grid-column: 1 / -1;
+  padding: 35px;
+  text-align: center;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentEmptyState > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f766e;
+  font-size: 25px;
+}
+
+.residentEmptyState strong {
+  color: #0f172a;
+}
+
+.residentEmptyState p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+@media (max-width: 850px) {
+  .residentIncidentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .residentPageHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+/* =========================================
+   MODAL NUEVA INCIDENCIA
+========================================= */
+
+.incidentModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.incidentModal {
+  width: 100%;
+  max-width: 520px;
+  padding: 26px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+}
+
+.incidentModalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.incidentModalHeader span {
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.incidentModalHeader h2 {
+  margin: 4px 0 0;
+  color: #0f172a;
+  font-size: 23px;
+}
+
+.incidentModalClose {
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.incidentFormGroup {
+  margin-bottom: 19px;
+}
+
+.incidentFormGroup > label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.incidentFormGroup select,
+.incidentFormGroup textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.incidentFormGroup textarea {
+  resize: vertical;
+}
+
+.incidentFormGroup select:focus,
+.incidentFormGroup textarea:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
+}
+
+.incidentFormGroup small {
+  display: block;
+  margin-top: 5px;
+  color: #94a3b8;
+  text-align: right;
+  font-size: 10px;
+}
+
+.incidentPriorityOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.incidentPriorityOptions label {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  color: #64748b;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.incidentPriorityOptions input {
+  display: none;
+}
+
+.incidentPriorityOptions .incidentPrioritySelected {
+  border-color: #0f766e;
+  background: #f0fdfa;
+  color: #0f766e;
+}
+
+.incidentModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.incidentCancelButton,
+.incidentSubmitButton {
+  padding: 11px 15px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.incidentCancelButton {
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+}
+
+.incidentSubmitButton {
+  border: none;
+  background: #0f766e;
+  color: white;
+}
+
+.incidentSubmitButton:hover {
+  background: #115e59;
+}
+
+.incidentSubmitButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.incidentFormMessage {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+}
+/* =========================================
+   VECINO - RESERVAS
+========================================= */
+
+.reservationSpaces {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.reservationSpaceCard {
+  position: relative;
+  padding: 19px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.reservationSpaceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  font-size: 20px;
+}
+
+.reservationSpaceCard h3 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.reservationSpaceCard p {
+  margin: 0 0 15px;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.reservationSpaceCard > span {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.reservationList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.reservationCard {
+  display: grid;
+  grid-template-columns: 55px 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 18px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+}
+
+.reservationDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 11px;
+  background: #f0fdfa;
+}
+
+.reservationDate strong {
+  color: #0f766e;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.reservationDate span {
+  margin-top: 3px;
+  color: #0f766e;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.reservationInfo h3 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.reservationInfo p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.reservationStatus {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.reservationNoHistory {
+  padding: 25px;
+  color: #94a3b8;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 1000px) {
+  .reservationSpaces {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .reservationCard {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .reservationStatus {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+/* =========================================
+   FORMULARIO RESERVAS
+========================================= */
+
+.reservationInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.reservationInput:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
+}
+
+.reservationTimeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.reservationHomeInfo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 3px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.reservationHomeInfo > span {
+  font-size: 20px;
+}
+
+.reservationHomeInfo strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #334155;
+  font-size: 11px;
+}
+
+.reservationHomeInfo p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.reservationMessage {
+  margin-top: 15px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reservationMessageError {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 550px) {
+  .reservationTimeGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   VECINO - GASTOS
+========================================= */
+
+.residentEconomicSummary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 32px;
+}
+
+.residentEconomicCard {
+  padding: 19px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentEconomicCard > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.residentEconomicCard > strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #0f172a;
+  font-size: 23px;
+}
+
+.residentEconomicCard .economicCategoryValue {
+  font-size: 17px;
+}
+
+.residentEconomicCard small {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.residentExpenseCategories {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentExpenseCategory {
+  margin-bottom: 17px;
+}
+
+.residentExpenseCategory:last-child {
+  margin-bottom: 0;
+}
+
+.expenseCategoryHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 7px;
+}
+
+.expenseCategoryHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expenseCategoryHeader strong {
+  color: #334155;
+  font-size: 12px;
+}
+
+.expenseCategoryHeader span {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.expenseProgress {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f1f5f9;
+}
+
+.expenseProgressValue {
+  height: 100%;
+  border-radius: inherit;
+  background: #0f766e;
+}
+
+.residentExpenseList {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentExpenseRow {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 17px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.residentExpenseRow:last-child {
+  border-bottom: none;
+}
+
+.residentExpenseIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.residentExpenseInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.residentExpenseInfo strong {
+  color: #0f172a;
+  font-size: 12px;
+}
+
+.residentExpenseInfo span {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.residentExpenseAmount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.residentExpenseAmount strong {
+  color: #0f172a;
+  font-size: 12px;
+}
+
+.residentExpenseAmount span {
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+.residentTransparency {
+  display: flex;
+  gap: 13px;
+  padding: 17px;
+  border: 1px solid #ccfbf1;
+  border-radius: 13px;
+  background: #f0fdfa;
+}
+
+.residentTransparencyIcon {
+  display: flex;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0f766e;
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.residentTransparency strong {
+  color: #115e59;
+  font-size: 12px;
+}
+
+.residentTransparency p {
+  margin: 4px 0 0;
+  color: #0f766e;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .residentEconomicSummary {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   VECINO - CONTRATOS
+========================================= */
+
+.residentContractsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.residentContractCard {
+  padding: 19px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.residentContractTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.residentContractIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.residentContractActive {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.residentContractService > span {
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.residentContractService h3 {
+  margin: 4px 0;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.residentContractService p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.residentContractDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.residentContractDetails > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.residentContractDetails span {
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+.residentContractDetails strong {
+  color: #334155;
+  font-size: 11px;
+}
+
+@media (max-width: 850px) {
+  .residentContractsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================
+   TABLÓN DE VECINOS
+========================================= */
+
+.communityBoard {
+  margin-bottom: 20px;
+  padding: 20px 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.communityBoardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.communityBoardHeader .socialEyebrow {
+  margin: 0 0 3px;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.communityBoardHeader h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.communityBoardHeader p:not(.socialEyebrow) {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.boardPublishButton {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 9px;
+  background: #0f766e;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.boardPublishButton:hover {
+  background: #115e59;
+  transform: translateY(-1px);
+}
+
+
+/* ESTADO VACÍO */
+
+.communityBoardEmpty {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 11px;
+  text-align: center;
+}
+
+.communityBoardEmpty strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #334155;
+  font-size: 12px;
+}
+
+.communityBoardEmpty p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+
+/* ANUNCIOS */
+
+.communityBoardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.communityBoardCard {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+}
+
+.communityBoardAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ccfbf1;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.communityBoardContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.communityBoardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.communityBoardMeta strong {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.communityBoardMeta span {
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+.communityBoardContent h3 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.communityBoardContent > p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .communityBoard {
+    padding: 16px;
+  }
+
+  .communityBoardHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .boardPublishButton {
+    width: 100%;
+  }
+}
+/* =========================================
+   LOGIN
+========================================= */
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  background:
+    radial-gradient(circle at top right, #ccfbf1 0, transparent 30%),
+    #f8fafc;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 430px;
+  padding: 38px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.loginLogo {
+  display: inline-block;
+  margin-bottom: 38px;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.loginHeading {
+  margin-bottom: 28px;
+}
+
+.loginHeading span {
+  color: #0f766e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.loginHeading h1 {
+  margin: 6px 0 8px;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.loginHeading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.loginField {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.loginField label {
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.loginField input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.loginField input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
+}
+
+.loginButton {
+  margin-top: 4px;
+  padding: 13px;
+  border: 0;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background: #1e293b;
+}
+
+.loginButton:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.loginError {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 11px;
+}
+
+.loginDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 22px;
+  padding: 13px;
+  border-radius: 9px;
+  background: #f0fdfa;
+  color: #64748b;
+  font-size: 10px;
+}
+
+.loginDemo strong {
+  margin-bottom: 2px;
+  color: #0f766e;
+}
+
+.loginBack {
+  display: block;
+  margin-top: 22px;
+  color: #64748b;
+  font-size: 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.loginBack:hover {
+  color: #0f172a;
+}
+.adminLogoutButton {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.adminLogoutButton:hover {
+  background: #f8fafc;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.adminLogoutButton:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.adminHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminHeaderActions .adminLogoutButton {
+  width: auto;
+  margin-top: 0;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  text-align: center;
+}
+
+.adminHeaderActions .adminLogoutButton:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+@media (max-width: 700px) {
+  .adminHeaderActions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .adminHeaderActions .adminLogoutButton {
+    width: 100%;
+  }
+}

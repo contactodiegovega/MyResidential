@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getConnection } from "../../lib/db";
+import CerrarSesion from "./CerrarSesion";
 
 export default async function AdministradorPage() {
   const pool = await getConnection();
@@ -76,23 +77,27 @@ export default async function AdministradorPage() {
 
       {/* CABECERA */}
 
-      <div className="adminDashboardHeader">
-        <div>
-          <p className="adminEyebrow">Panel de administración</p>
-          <h1>Buenos días, Urbalia</h1>
-          <p>
-            Resumen de las comunidades gestionadas y principales
-            desviaciones detectadas.
-          </p>
-        </div>
+        <div className="adminDashboardHeader">
+      <div>
+        <p className="adminEyebrow">Panel de administración</p>
+        <h1>Buenos días, Urbalia</h1>
+        <p>
+          Resumen de las comunidades gestionadas y principales
+          desviaciones detectadas.
+        </p>
+      </div>
 
+      <div className="adminHeaderActions">
         <Link
           href="/administrador/comunidades"
           className="dashboardPrimaryButton"
         >
           Ver comunidades
         </Link>
+
+        <CerrarSesion />
       </div>
+    </div>
 
       {/* KPIs */}
 
