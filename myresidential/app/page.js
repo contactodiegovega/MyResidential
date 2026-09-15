@@ -16,6 +16,7 @@ export default function Home() {
 
         <nav className="navLinks">
           <a href="#problema">Problema</a>
+          <a href="#modelo-datos">Datos</a>
           <a href="#funcionalidades">Funcionalidades</a>
           <a href="#administrador">Administrador</a>
           <a href="#vecino">Vecino</a>
@@ -234,6 +235,198 @@ export default function Home() {
     </article>
   </div>
 </section>
+  <section id="modelo-datos" className="section dataModelSection">
+  <div className="sectionIntro">
+    <p className="sectionEyebrow">Arquitectura de datos</p>
+    <h2>Todo MyResidential parte de un modelo de datos conectado.</h2>
+    <p>
+      La información de administradores y vecinos se integra en un modelo
+      relacional alojado en Azure SQL, con la comunidad como entidad central.
+    </p>
+  </div>
+
+  <div className="erDiagram">
+
+    <div className="erMainEntity">
+      <span className="erEntityType">ENTIDAD CENTRAL</span>
+      <h3>COMUNIDADES</h3>
+      <div className="erFields">
+        <strong>PK · comunidad_id</strong>
+        <span>nombre</span>
+        <span>numero_viviendas</span>
+        <span>anio_construccion</span>
+        <span>ascensores · piscina · garaje</span>
+        <span>jardin · conserjeria</span>
+      </div>
+    </div>
+
+    <div className="erConnector">
+      <span>1</span>
+      <div></div>
+      <span>N</span>
+    </div>
+
+    <div className="erEntitiesGrid">
+
+      <article className="erEntity">
+        <div className="erEntityHeader">
+          <span>🏠</span>
+          <h3>VIVIENDAS</h3>
+        </div>
+        <div className="erFields">
+          <strong>PK · vivienda_id</strong>
+          <b>FK · comunidad_id</b>
+          <span>portal · planta · puerta</span>
+          <span>metros_cuadrados</span>
+        </div>
+      </article>
+
+      <article className="erEntity">
+        <div className="erEntityHeader">
+          <span>€</span>
+          <h3>GASTOS</h3>
+        </div>
+        <div className="erFields">
+          <strong>PK · gasto_id</strong>
+          <b>FK · comunidad_id</b>
+          <b>FK · proveedor_id</b>
+          <span>categoria · concepto</span>
+          <span>importe · fecha</span>
+        </div>
+      </article>
+
+      <article className="erEntity">
+        <div className="erEntityHeader">
+          <span>!</span>
+          <h3>INCIDENCIAS</h3>
+        </div>
+        <div className="erFields">
+          <strong>PK · incidencia_id</strong>
+          <b>FK · comunidad_id</b>
+          <b>FK · proveedor_id</b>
+          <span>tipo · estado · prioridad</span>
+          <span>fecha_apertura · fecha_cierre</span>
+        </div>
+      </article>
+
+      <article className="erEntity">
+        <div className="erEntityHeader">
+          <span>▣</span>
+          <h3>CONTRATOS</h3>
+        </div>
+        <div className="erFields">
+          <strong>PK · contrato_id</strong>
+          <b>FK · comunidad_id</b>
+          <b>FK · proveedor_id</b>
+          <span>servicio · importe_anual</span>
+          <span>fecha_inicio · fecha_fin</span>
+        </div>
+      </article>
+
+      <article className="erEntity">
+        <div className="erEntityHeader">
+          <span>⚙</span>
+          <h3>PROVEEDORES</h3>
+        </div>
+        <div className="erFields">
+          <strong>PK · proveedor_id</strong>
+          <span>nombre</span>
+          <span>categoria</span>
+          <span>telefono · email</span>
+        </div>
+      </article>
+
+    </div>
+
+    <div className="erResidentArea">
+      <div className="erAreaTitle">
+        <span>PORTAL DEL VECINO</span>
+        <p>
+          Cada vecino accede a los servicios asociados a su vivienda y comunidad.
+        </p>
+      </div>
+
+      <div className="erResidentFlow">
+        <div className="erFlowNode">
+          <span>👤</span>
+          <strong>VECINO</strong>
+          <small>Usuario de la vivienda</small>
+        </div>
+
+        <span className="erArrow">→</span>
+
+        <div className="erFlowNode">
+          <span>🏠</span>
+          <strong>VIVIENDA</strong>
+          <small>vivienda_id</small>
+        </div>
+
+        <span className="erArrow">→</span>
+
+        <div className="erResidentEntities">
+          <article className="erSmallEntity">
+            <strong>RESERVAS</strong>
+            <span>PK · reserva_id</span>
+            <span>FK · vivienda_id</span>
+            <span>espacio · fecha · hora</span>
+          </article>
+
+          <article className="erSmallEntity">
+            <strong>ANUNCIOS</strong>
+            <span>PK · anuncio_id</span>
+            <span>FK · vivienda_id</span>
+            <span>titular · texto</span>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div className="analyticsLayer">
+      <div className="analyticsIntro">
+        <span className="analyticsBadge">CAPA ANALÍTICA</span>
+        <h3>De la base de datos al benchmarking</h3>
+        <p>
+          Los datos operacionales se procesan para generar métricas que
+          permiten comparar comunidades similares y detectar desviaciones.
+        </p>
+      </div>
+
+      <div className="analyticsFlow">
+        <div>
+          <strong>Azure SQL</strong>
+          <span>Datos operacionales</span>
+        </div>
+
+        <span>→</span>
+
+        <div>
+          <strong>Python + Pandas</strong>
+          <span>Análisis y segmentación</span>
+        </div>
+
+        <span>→</span>
+
+        <div>
+          <strong>Benchmarking</strong>
+          <span>Comunidades comparables</span>
+        </div>
+
+        <span>→</span>
+
+        <div>
+          <strong>MyResidential</strong>
+          <span>Alertas y decisiones</span>
+        </div>
+      </div>
+
+      <div className="analyticsTables">
+        <span>benchmark_comunidades</span>
+        <span>benchmark_categorias</span>
+      </div>
+    </div>
+
+  </div>
+</section>  
     <section id="funcionalidades" className="section featuresSection">
   <div className="sectionIntro">
     <p className="sectionEyebrow">Funcionalidades</p>

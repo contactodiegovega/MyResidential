@@ -4179,3 +4179,309 @@ a {
   opacity: 0.5;
   cursor: wait;
 }
+/* ==============================
+   MODELO ENTIDAD-RELACIÓN
+================================ */
+
+.dataModelSection {
+  background: #f8fafc;
+}
+
+.erDiagram {
+  max-width: 1180px;
+  margin: 50px auto 0;
+}
+
+.erMainEntity {
+  width: 360px;
+  margin: 0 auto;
+  padding: 26px;
+  background: #0f172a;
+  color: white;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.15);
+}
+
+.erEntityType,
+.analyticsBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.erMainEntity h3,
+.erEntity h3 {
+  margin: 0 0 15px;
+}
+
+.erFields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.erFields strong {
+  color: #60a5fa;
+}
+
+.erFields b {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.erMainEntity .erFields span {
+  color: #cbd5e1;
+}
+
+.erConnector {
+  width: 2px;
+  height: 75px;
+  background: #cbd5e1;
+  margin: 0 auto;
+  position: relative;
+}
+
+.erConnector span {
+  position: absolute;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.erConnector span:first-child {
+  top: 5px;
+}
+
+.erConnector span:last-child {
+  bottom: 5px;
+}
+
+.erEntitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.erEntity {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid #2563eb;
+  border-radius: 14px;
+  padding: 20px;
+  min-height: 205px;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.erEntityHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.erEntityHeader h3 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.erEntity .erFields {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* PORTAL VECINO */
+
+.erResidentArea {
+  margin-top: 45px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.erAreaTitle > span {
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.erAreaTitle p {
+  color: #475569;
+  margin-bottom: 25px;
+}
+
+.erResidentFlow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.erFlowNode {
+  min-width: 160px;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  border: 1px solid #d1fae5;
+}
+
+.erFlowNode > span {
+  font-size: 22px;
+}
+
+.erFlowNode small {
+  color: #64748b;
+}
+
+.erArrow {
+  color: #0f766e;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.erResidentEntities {
+  display: flex;
+  gap: 12px;
+}
+
+.erSmallEntity {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 170px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.erSmallEntity strong {
+  color: #0f172a;
+  font-size: 13px;
+}
+
+/* CAPA ANALÍTICA */
+
+.analyticsLayer {
+  margin-top: 45px;
+  background: #0f172a;
+  color: white;
+  border-radius: 22px;
+  padding: 35px;
+}
+
+.analyticsIntro {
+  max-width: 650px;
+}
+
+.analyticsIntro h3 {
+  font-size: 25px;
+  margin: 3px 0 8px;
+}
+
+.analyticsIntro p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.analyticsFlow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.analyticsFlow > div {
+  background: #1e293b;
+  padding: 18px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.analyticsFlow div span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.analyticsFlow > span {
+  color: #60a5fa;
+  font-size: 20px;
+}
+
+.analyticsTables {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.analyticsTables span {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  color: #93c5fd;
+  border-radius: 20px;
+  padding: 7px 13px;
+  font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .erEntitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analyticsFlow {
+    grid-template-columns: 1fr;
+  }
+
+  .analyticsFlow > span {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+
+  .erResidentFlow {
+    flex-direction: column;
+  }
+
+  .erArrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 650px) {
+  .erMainEntity {
+    width: 100%;
+  }
+
+  .erEntitiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .erResidentEntities {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .erFlowNode,
+  .erSmallEntity {
+    width: 100%;
+  }
+
+  .analyticsTables {
+    flex-direction: column;
+  }
+}
