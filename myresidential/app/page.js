@@ -55,7 +55,7 @@ export default function Home() {
           </a>
 
           <a
-            href="/vecino"
+            href="/vecino/login"
             className="heroAccessCard heroAccessNeighbor"
           >
             <span className="heroAccessLabel">MI COMUNIDAD</span>

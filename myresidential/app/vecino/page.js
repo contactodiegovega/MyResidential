@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getConnection } from "../../lib/db";
 import FormularioAnuncio from "./FormularioAnuncio";
+import CerrarSesionVecino from "./CerrarSesionVecino";
 
 export default async function VecinoPage() {
   const comunidadId = 107;
@@ -165,8 +166,12 @@ export default async function VecinoPage() {
         </nav>
 
         <div className="socialSidebarBottom">
-          <Link href="/">← Volver a MyResidential</Link>
-        </div>
+        <CerrarSesionVecino />
+
+        <Link href="/">
+          ← Volver a MyResidential
+        </Link>
+      </div>
       </aside>
 
 

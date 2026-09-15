@@ -43,26 +43,45 @@ export default async function ReservasVecinoPage() {
 
   const reservas = reservasResult.recordset;
 
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0);
+    const ahora = new Date();
 
-  const proximasReservas = reservas
+    function obtenerFechaHoraFin(reserva) {
+    const fecha = new Date(reserva.fecha_reserva);
+
+    const [horas, minutos] = String(reserva.hora_fin)
+        .slice(0, 5)
+        .split(":")
+        .map(Number);
+
+    fecha.setHours(horas, minutos, 0, 0);
+
+    return fecha;
+    }
+
+    const proximasReservas = reservas
     .filter((reserva) => {
-      const fecha = new Date(reserva.fecha_reserva);
-      fecha.setHours(0, 0, 0, 0);
-      return fecha >= hoy && reserva.estado !== "Cancelada";
+        if (reserva.estado === "Cancelada") {
+        return false;
+        }
+
+        return obtenerFechaHoraFin(reserva) > ahora;
     })
     .sort(
-      (a, b) =>
-        new Date(a.fecha_reserva) - new Date(b.fecha_reserva)
+        (a, b) =>
+        obtenerFechaHoraFin(a) - obtenerFechaHoraFin(b)
     );
 
-  const historial = reservas
+    const historial = reservas
     .filter((reserva) => {
-      const fecha = new Date(reserva.fecha_reserva);
-      fecha.setHours(0, 0, 0, 0);
-      return fecha < hoy || reserva.estado === "Cancelada";
+        return (
+        reserva.estado === "Cancelada" ||
+        obtenerFechaHoraFin(reserva) <= ahora
+        );
     })
+    .sort(
+        (a, b) =>
+        obtenerFechaHoraFin(b) - obtenerFechaHoraFin(a)
+    )
     .slice(0, 10);
 
  function formatearHora(hora) {
@@ -343,7 +362,11 @@ export default async function ReservasVecinoPage() {
                   </div>
 
                   <div className="residentHistoryDate">
-                    <span>{reserva.estado}</span>
+                    <span>
+                    {reserva.estado === "Cancelada"
+                        ? "Cancelada"
+                        : "Finalizada"}
+                    </span>
 
                     <small>
                       {new Date(

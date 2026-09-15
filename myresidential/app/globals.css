@@ -4153,3 +4153,29 @@ a {
     width: 100%;
   }
 }
+.residentLogoutButton {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.residentLogoutButton:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.residentLogoutButton:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
