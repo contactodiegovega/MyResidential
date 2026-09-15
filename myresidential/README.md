@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏢 MyResidential
 
-## Getting Started
+**MyResidential** es una plataforma PropTech desarrollada para ayudar a administradores de fincas a centralizar la información de sus comunidades y convertir los datos de gestión en información útil para la toma de decisiones. Para los vecinos, ofrece un espacio desde el que consultar información de su comunidad, comunicar incidencias, realizar reservas y participar en el tablón de anuncios.
 
-First, run the development server:
+El proyecto parte de un caso de uso ficticio: **Urbalia Gestión de Fincas**, una administradora que gestiona 120 comunidades residenciales.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Objetivo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+El principal problema abordado es la dificultad para saber si el gasto de una comunidad es elevado cuando se analiza de forma aislada.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+MyResidential crea un sistema de **benchmarking entre comunidades comparables**, permitiendo detectar desviaciones de gasto y analizar qué categorías están detrás de ellas.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Además, incluye un portal para vecinos desde el que pueden consultar información de su comunidad, realizar reservas, comunicar incidencias y publicar anuncios.
 
-## Learn More
+## 🛠️ Tecnologías
 
-To learn more about Next.js, take a look at the following resources:
+- **Python / Pandas** — generación, tratamiento y análisis de datos
+- **SQL / Azure SQL Database** — modelo relacional y almacenamiento
+- **Next.js / JavaScript / CSS** — aplicación web
+- **Microsoft Azure** — infraestructura de datos y autenticación
+- **Vercel** — despliegue de la aplicación
+- **Git / GitHub** — control de versiones
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📊 Datos y funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+El proyecto utiliza un **dataset sintético** que simula la operativa de 120 comunidades residenciales: gastos, proveedores, contratos, incidencias, viviendas y reservas.
 
-## Deploy on Vercel
+La plataforma incluye:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Dashboard para administradores
+- Benchmarking de gasto por vivienda
+- Detección de desviaciones frente a comunidades comparables
+- Análisis de gasto por categorías
+- Gestión de incidencias, contratos y proveedores
+- Portal independiente para residentes
+- Reservas y tablón de anuncios
+- Integración de la aplicación con Azure SQL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧠 Enfoque Data Science
+
+El análisis mostró importantes diferencias de gasto entre comunidades, haciendo poco representativa una comparación basada únicamente en la media global.
+
+Por ello se desarrolló un benchmark contextual basado en características similares de las comunidades, utilizando la **mediana del grupo comparable** como referencia para identificar desviaciones que requieren revisión.
+
+> Proyecto desarrollado como parte de un Bootcamp de Data Analytics & IA.
