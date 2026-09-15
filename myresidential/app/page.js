@@ -16,7 +16,7 @@ export default function Home() {
 
         <nav className="navLinks">
           <a href="#problema">Problema</a>
-          <a href="#modelo-datos">Datos</a>
+          <a href="#modelo-datos">Modelo de Datos</a>
           <a href="#funcionalidades">Funcionalidades</a>
           <a href="#administrador">Administrador</a>
           <a href="#vecino">Vecino</a>
@@ -254,7 +254,7 @@ export default function Home() {
         <strong>PK · comunidad_id</strong>
         <span>nombre</span>
         <span>numero_viviendas</span>
-        <span>anio_construccion</span>
+        <span>año_construccion</span>
         <span>ascensores · piscina · garaje</span>
         <span>jardin · conserjeria</span>
       </div>
@@ -378,50 +378,6 @@ export default function Home() {
             <span>titular · texto</span>
           </article>
         </div>
-      </div>
-    </div>
-
-    <div className="analyticsLayer">
-      <div className="analyticsIntro">
-        <span className="analyticsBadge">CAPA ANALÍTICA</span>
-        <h3>De la base de datos al benchmarking</h3>
-        <p>
-          Los datos operacionales se procesan para generar métricas que
-          permiten comparar comunidades similares y detectar desviaciones.
-        </p>
-      </div>
-
-      <div className="analyticsFlow">
-        <div>
-          <strong>Azure SQL</strong>
-          <span>Datos operacionales</span>
-        </div>
-
-        <span>→</span>
-
-        <div>
-          <strong>Python + Pandas</strong>
-          <span>Análisis y segmentación</span>
-        </div>
-
-        <span>→</span>
-
-        <div>
-          <strong>Benchmarking</strong>
-          <span>Comunidades comparables</span>
-        </div>
-
-        <span>→</span>
-
-        <div>
-          <strong>MyResidential</strong>
-          <span>Alertas y decisiones</span>
-        </div>
-      </div>
-
-      <div className="analyticsTables">
-        <span>benchmark_comunidades</span>
-        <span>benchmark_categorias</span>
       </div>
     </div>
 
