@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getConnection } from "../../../lib/db";
-import CerrarSesion from "./CerrarSesion";
+import CerrarSesion from "../CerrarSesion";
 
 export default async function Comunidades() {
   const pool = await getConnection();
