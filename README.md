@@ -1,45 +1,46 @@
 # 🏢 MyResidential
 
-**MyResidential** es una plataforma PropTech desarrollada para ayudar a administradores de fincas a centralizar la información de sus comunidades y convertir los datos de gestión en información útil para la toma de decisiones. Para los vecinos, ofrece un espacio desde el que consultar información de su comunidad, comunicar incidencias, realizar reservas y participar en el tablón de anuncios.
+**MyResidential** es una plataforma PropTech para la gestión de comunidades residenciales, diseñada para **administradores de fincas y vecinos**.
 
-El proyecto parte de un caso de uso ficticio: **Urbalia Gestión de Fincas**, una administradora que gestiona 120 comunidades residenciales.
+El proyecto parte de un caso ficticio, **Urbalia Gestión de Fincas**, una administradora que gestiona 120 comunidades.
 
 ## 🎯 Objetivo
 
-El principal problema abordado es la dificultad para saber si el gasto de una comunidad es elevado cuando se analiza de forma aislada.
+Centralizar la información de las comunidades y utilizar los datos para facilitar su gestión.
 
-MyResidential crea un sistema de **benchmarking entre comunidades comparables**, permitiendo detectar desviaciones de gasto y analizar qué categorías están detrás de ellas.
+El administrador puede consultar comunidades, gastos, proveedores, contratos e incidencias, además de comparar el **gasto por vivienda entre comunidades similares** mediante benchmarking.
 
-Además, incluye un portal para vecinos desde el que pueden consultar información de su comunidad, realizar reservas, comunicar incidencias y publicar anuncios.
+Los vecinos disponen de un portal para consultar información, comunicar incidencias, realizar reservas y acceder al tablón de anuncios.
 
 ## 🛠️ Tecnologías
 
-- **Python / Pandas** — generación, tratamiento y análisis de datos
-- **SQL / Azure SQL Database** — modelo relacional y almacenamiento
-- **Next.js / JavaScript / CSS** — aplicación web
-- **Microsoft Azure** — infraestructura de datos y autenticación
-- **Vercel** — despliegue de la aplicación
-- **Git / GitHub** — control de versiones
+**Python · Pandas · SQL · Azure SQL · Next.js · JavaScript · CSS · Vercel**
 
-## 📊 Datos y funcionalidades
+## 🌐 Probar la aplicación
 
-El proyecto utiliza un **dataset sintético** que simula la operativa de 120 comunidades residenciales: gastos, proveedores, contratos, incidencias, viviendas y reservas.
+La aplicación está desplegada en Vercel:
 
-La plataforma incluye:
+https://my-residential.vercel.app/
 
-- Dashboard para administradores
-- Benchmarking de gasto por vivienda
-- Detección de desviaciones frente a comunidades comparables
-- Análisis de gasto por categorías
-- Gestión de incidencias, contratos y proveedores
-- Portal independiente para residentes
-- Reservas y tablón de anuncios
-- Integración de la aplicación con Azure SQL
+También puede ejecutarse en local:
 
-## 🧠 Enfoque Data Science
+```bash
+git clone https://github.com/contactodiegovega/MyResidential.git
+cd MyResidential/myresidential
+npm install
+npm run dev
+```
 
-El análisis mostró importantes diferencias de gasto entre comunidades, haciendo poco representativa una comparación basada únicamente en la media global.
+Después abre:
 
-Por ello se desarrolló un benchmark contextual basado en características similares de las comunidades, utilizando la **mediana del grupo comparable** como referencia para identificar desviaciones que requieren revisión.
+```text
+http://localhost:3000
+```
 
-> Proyecto desarrollado como parte de un Bootcamp de Data Analytics & IA.
+> Algunas funcionalidades requieren las variables de entorno de Azure SQL, que no se incluyen en el repositorio por seguridad.
+
+## 📊 Arquitectura
+
+**Datos sintéticos → Python/Pandas → Azure SQL → Next.js → Vercel**
+
+Proyecto desarrollado durante el **Bootcamp de Data & IA de Upgrade Hub**.
