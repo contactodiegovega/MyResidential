@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getConnection } from "../../lib/db";
 import CerrarSesion from "./CerrarSesion";
-
+export const dynamic = "force-dynamic";
 export default async function AdministradorPage() {
   const pool = await getConnection();
 
