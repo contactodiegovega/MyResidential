@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getConnection } from "../../../lib/db";
 import FormularioReserva from "./FormularioReserva";
-
+export const dynamic = "force-dynamic";
 export default async function ReservasVecinoPage() {
   // Temporal hasta que hagamos el login
   const comunidadId = 107;

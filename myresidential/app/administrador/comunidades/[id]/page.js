@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getConnection } from "../../../../lib/db";
-
+export const dynamic = "force-dynamic";
 export default async function ComunidadDetalle({ params }) {
   const { id } = await params;
 

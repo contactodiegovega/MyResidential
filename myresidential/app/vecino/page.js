@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getConnection } from "../../lib/db";
 import FormularioAnuncio from "./FormularioAnuncio";
 import CerrarSesionVecino from "./CerrarSesionVecino";
-
+export const dynamic = "force-dynamic";
 export default async function VecinoPage() {
   const comunidadId = 107;
   const viviendaId = 12922;

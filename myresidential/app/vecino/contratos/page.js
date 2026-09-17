@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getConnection } from "../../../lib/db";
-
+export const dynamic = "force-dynamic";
 export default async function ContratosVecinoPage() {
   const comunidadId = 107;
 

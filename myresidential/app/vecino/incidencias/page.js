@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getConnection } from "../../../lib/db";
 import FormularioIncidencia from "./FormularioIncidencia";
-
+export const dynamic = "force-dynamic";
 export default async function IncidenciasVecinoPage() {
   // Temporalmente comunidad fija.
   // Después vendrá del login del vecino.
