@@ -38,8 +38,7 @@ export default function VecinoLoginPage() {
         throw new Error(data.error || "No se ha podido iniciar sesión.");
       }
 
-      router.push("/vecino");
-      router.refresh();
+     router.replace("/vecino");
     } catch (error) {
       setError(error.message);
     } finally {
