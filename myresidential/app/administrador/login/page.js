@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
+ 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,14 +35,35 @@ export default function AdminLoginPage() {
         throw new Error(data.error || "No se ha podido iniciar sesión.");
       }
 
-      router.push("/administrador");
-      router.refresh();
+     window.location.href = "/administrador";
+
     } catch (error) {
       setError(error.message);
-    } finally {
       setCargando(false);
     }
   }
+
+  if (cargando) {
+  return (
+    <main className="loginLoadingPage">
+      <div className="loginLoadingContent">
+
+        <Link href="/" className="loginLogo">
+          MyResidential
+        </Link>
+
+        <div className="loginSpinner"></div>
+
+        <h2>Accediendo al panel</h2>
+
+        <p>
+          Estamos cargando los datos de tus comunidades...
+        </p>
+
+      </div>
+    </main>
+  );
+}
 
   return (
     <main className="loginPage">

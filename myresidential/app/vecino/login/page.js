@@ -37,15 +37,35 @@ export default function VecinoLoginPage() {
       if (!response.ok) {
         throw new Error(data.error || "No se ha podido iniciar sesión.");
       }
+      
+      window.location.href = "/vecino";
 
-     router.replace("/vecino");
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setCargando(false);
+     } catch (error) {
+    setError(error.message);
+    setCargando(false);
     }
   }
+    if (cargando) {
+  return (
+    <main className="loginLoadingPage">
+      <div className="loginLoadingContent">
 
+        <Link href="/" className="loginLogo">
+          MyResidential
+        </Link>
+
+        <div className="loginSpinner"></div>
+
+        <h2>Accediendo a tu comunidad</h2>
+
+        <p>
+          Estamos preparando tu espacio...
+        </p>
+
+      </div>
+    </main>
+  );
+}
   return (
     <main className="loginPage">
       <div className="loginCard">
